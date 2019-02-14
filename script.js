@@ -5,14 +5,37 @@ const trailUrl = "https://www.trailrunproject.com/data/get-trails";
 const trailKey = "200417972-9dc9a277ef8cb3c883310ed069aec132";
 const geoCodeUrl = "https://maps.googleapis.com/maps/api/geocode/json";
 const googleApi = "AIzaSyDg4-ORDFbZJ9J7LASnL5qecmn78pHB3mo";
-let trailName = 'Lake Houston Loop';
-let trailSummary = 'A beautiful and quiet loop on a mix of singletrack and fire road through old forest and swamp.';
-let trailPic = "https://cdn-files.apstatic.com/hike/7032190_smallMed_1497129814.jpg";
-let trailLength = 10;
-let trailAscent = 115;
+//let trailName = 'Lake Houston Loop';
+//let trailSummary = 'A beautiful and quiet loop on a mix of singletrack and fire road through old forest and swamp.';
+//let trailPic = "https://cdn-files.apstatic.com/hike/7032190_smallMed_1497129814.jpg";
+//let trailLength = 10;
+//let trailAscent = 115;
 //let trailUrl = "https://www.trailrunproject.com/trail/7023352/lake-houston-loop";
 
 
+function buildResults(trails){
+    //set returned data
+    for(let i = 0; i < trails.length; i++){
+        let trailPic = trails[i].imgSmallMed;
+        let trailLength = trails[i].length;
+        let trailName = trails[i].name;
+        let trailSummary = trails[i].summary;
+        let trailAscent = trails[i].ascent;
+        let resultsList = `<img class="js-trail-image" src="${trailPic}">
+        <div class="js-single-result">
+        <p class="js-name">${trailName}<p>
+        <p>${trailSummary}<p>
+        <p>Length: ${trailLength} miles, Ascent: ${trailAscent}<p>
+       </div>`;
+        $(".results").append(resultsList); 
+    }
+    let resultsMap = `<div class="js-all-results">
+                        <h3>Map of All Results</h3>
+                        <img class="js-results-map" src="TrailHead.png">
+                      </div>`;
+    $(".results").append(resultsMap); 
+
+}
 function getTrails(lat, long){
     let latLong = `lat=${lat}&lon=${long}`;
     const searchRadius = $("#in-radius").val();
@@ -22,7 +45,10 @@ function getTrails(lat, long){
         .then(resp =>resp.json())
         .then(respJson => {
             console.log(respJson);
+            //call function to loop through the results and push them to the DOM.
+            buildResults(respJson.trails);
         })
+        .catch(error => alert(`something went wrong: ${error.message}`));
 }
 function getLatLong(searchLocation){
     searchLocation = "?address=" + searchLocation.replace(" ", "+");
@@ -41,17 +67,7 @@ function getResults(searchLocation){
     //get location into lat/long
     getLatLong(searchLocation);
     //this is going to mve
-    let resultsList = `<img class="js-trail-image" src="${trailPic}">
-                        <div class="js-single-result">
-                        <p class="js-name">${trailName}<p>
-                        <p>${trailSummary}<p>
-                        <p>Length: ${trailLength} miles, Ascent: ${trailAscent}<p>
-                       </div>
-                       <div class="js-all-results">
-                        <h3>Map of All Results</h3>
-                        <img class="js-results-map" src="TrailHead.png">
-                       </div>`;
-     $(".results").append(resultsList);               
+              
 }
 
 function handleForm(){
