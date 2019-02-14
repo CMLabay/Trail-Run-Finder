@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <title>Trail Run Finder</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <h2>Welcome to the day trip planner!</h2>
+        <h3>Enter a city, state, or zipcode to find nearby trails.</h3>
+        <form class="search-form"> 
+            <fieldset class="submit">
+                <label for="in-city">City, State or zipcode</label>
+                <input type="text" id="in-city" name="in-city" placeholder="Houston, TX" required>
+                <label for="in-radius">Search Radius</label>
+                <input type="number" id="in-radius" name="in-radius" value=25>
+                <button class="submit">Find Trails</button>
+            </fieldset>
+        </form>
+        <section class="results">
+            <h1 class="hidden">Results</h1>
+        </section>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+*{
+    font-family:sans-serif;
+    margin:20px;  
+}
+h3, h2, h1{
+    text-align:center;
+}
+fieldset{
+    border:none;
+    text-align:center;
+    font-size:20px;
+}
+
+.js-single-result{
+    float:left;
+    max-width:50%;
+}
+.results{
+    padding-left:80px;
+    padding-right:80px;
+
+}
+.js-results-map{
+    max-width:60%;
+}
+.js-trail-image{
+    text-align:right;
+    float:right;
+}
+
+.js-all-results{
+    clear: both;
+    text-align:center;
+}
+.js-name{
+    font-size:25px;
+    font-weight:bold;
+}
+p{
+    font-size:20px;
+}
+a{
+    text-align:left;
+}
