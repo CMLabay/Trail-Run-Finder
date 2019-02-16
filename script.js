@@ -11,6 +11,9 @@ let trailSummary = '';
 let trailAscent = '';
 let searchLat = '';
 let searchLong = '';
+let condStatus = '';
+let condDetails = '';
+let condDate = '';
 
 function buildResults(trails){
     //set returned data
@@ -26,12 +29,20 @@ function buildResults(trails){
         trailSummary = trails[i].summary;
         trailAscent = trails[i].ascent;
         resultsLoc[i] = {name: `${trailName}`, latitude: `${trails[i].latitude}`, longitude: `${trails[i].longitude}`, zInd: (i+1)};
+        condStatus = trails[i].conditionStatus;
+        condDetails = trails[i].conditionDetails;
+        if(condDetails == null){
+            condDetails = '';
+        }
+        condDate = trails[i].conditionDate;
         let resultsList = `
         <img class="js-trail-image" src="${trailPic}">
         <div class="js-single-result">
-        <p class="js-name">${trailName}<p>
-        <p>${trailSummary}<p>
-        <p>Length: ${trailLength} miles, Ascent: ${trailAscent}<p>
+        <p class="js-name">${trailName}</p>
+        <p>${trailSummary}</p>
+        <p>Length: ${trailLength} miles, Ascent: ${trailAscent}</p>
+        <p>Condition: ${condStatus}, Date Reported: ${condDate}</p>
+        <p>${condDetails}</p>
        </div>
        <div style="clear: both;"></div>`;
         $(".results").append(resultsList); 
@@ -44,7 +55,7 @@ function initMap(resultsNum) {
     if(searchLat != ''){
         let map;
         map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 10,
+        zoom: 9.5,
         center: {lat: searchLat, lng: searchLong},
         });
         for(let i = 0; i<resultsNum;i++){
@@ -92,6 +103,7 @@ function handleForm(){
         event.preventDefault();
         let searchLocation = $("#in-city").val();
         $(".results").empty();
+        $('#map').empty();
         getLatLong(searchLocation);
     });
 }
