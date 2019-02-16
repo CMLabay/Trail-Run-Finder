@@ -19,7 +19,7 @@ function buildResults(trails){
         let trailPic = trails[i].imgSmallMed;
         //placeholder pic if trail does not have an image.
         if(trailPic === ''){
-            trailPic = "http://cdn.slipstick.com/images/2011/08/file-does-not-exist.png";
+            trailPic = "no-trail-pic.jpg";
         }
         trailLength = trails[i].length;
         trailName = trails[i].name;
@@ -33,7 +33,7 @@ function buildResults(trails){
         <p>${trailSummary}<p>
         <p>Length: ${trailLength} miles, Ascent: ${trailAscent}<p>
        </div>
-       <div></div>`;
+       <div style="clear: both;"></div>`;
         $(".results").append(resultsList); 
     }
     let resultsNum = trails.length;
