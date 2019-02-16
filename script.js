@@ -1,55 +1,78 @@
 'use strict'
 
-
 const trailUrl = "https://www.trailrunproject.com/data/get-trails";
 const trailKey = "200417972-9dc9a277ef8cb3c883310ed069aec132";
 const geoCodeUrl = "https://maps.googleapis.com/maps/api/geocode/json";
 const googleApi = "AIzaSyDg4-ORDFbZJ9J7LASnL5qecmn78pHB3mo";
-//let trailName = 'Lake Houston Loop';
-//let trailSummary = 'A beautiful and quiet loop on a mix of singletrack and fire road through old forest and swamp.';
-//let trailPic = "https://cdn-files.apstatic.com/hike/7032190_smallMed_1497129814.jpg";
-//let trailLength = 10;
-//let trailAscent = 115;
-//let trailUrl = "https://www.trailrunproject.com/trail/7023352/lake-houston-loop";
-
+let resultsLoc = {};
+let trailLength = '';
+let trailName = '';
+let trailSummary = '';
+let trailAscent = '';
+let searchLat = '';
+let searchLong = '';
 
 function buildResults(trails){
     //set returned data
+    $(".results").append(`<h1>${trails.length} trails found:</h1>`);
     for(let i = 0; i < trails.length; i++){
         let trailPic = trails[i].imgSmallMed;
-        let trailLength = trails[i].length;
-        let trailName = trails[i].name;
-        let trailSummary = trails[i].summary;
-        let trailAscent = trails[i].ascent;
-        let resultsList = `<img class="js-trail-image" src="${trailPic}">
+        //placeholder pic if trail does not have an image.
+        if(trailPic === ''){
+            trailPic = "http://cdn.slipstick.com/images/2011/08/file-does-not-exist.png";
+        }
+        trailLength = trails[i].length;
+        trailName = trails[i].name;
+        trailSummary = trails[i].summary;
+        trailAscent = trails[i].ascent;
+        resultsLoc[i] = {name: `${trailName}`, latitude: `${trails[i].latitude}`, longitude: `${trails[i].longitude}`, zInd: (i+1)};
+        let resultsList = `
+        <img class="js-trail-image" src="${trailPic}">
         <div class="js-single-result">
         <p class="js-name">${trailName}<p>
         <p>${trailSummary}<p>
         <p>Length: ${trailLength} miles, Ascent: ${trailAscent}<p>
-       </div>`;
+       </div>
+       <div></div>`;
         $(".results").append(resultsList); 
     }
-    let resultsMap = `<div class="js-all-results">
-                        <h3>Map of All Results</h3>
-                        <img class="js-results-map" src="TrailHead.png">
-                      </div>`;
-    $(".results").append(resultsMap); 
-
+    let resultsNum = trails.length;
+    initMap(resultsNum);
+}
+    
+function initMap(resultsNum) {
+    if(searchLat != ''){
+        let map;
+        map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 10,
+        center: {lat: searchLat, lng: searchLong},
+        });
+        for(let i = 0; i<resultsNum;i++){
+            let marker = new google.maps.Marker({
+                position: {lat: parseFloat(resultsLoc[i].latitude), lng: parseFloat(resultsLoc[i].longitude)},
+                map: map,
+                title: resultsLoc[i].name,
+                zIndex: resultsLoc[i].zInd,
+            });
+        }
+        $('#map').removeClass('hidden');
+    }
 }
 function getTrails(lat, long){
     let latLong = `lat=${lat}&lon=${long}`;
+    searchLat = lat;
+    searchLong = long;
     const searchRadius = $("#in-radius").val();
     let url2 = trailUrl+'?'+latLong+'&maxDistance='+searchRadius+'&key='+trailKey;
-    console.log(url2);
     fetch(url2)
         .then(resp =>resp.json())
         .then(respJson => {
-            console.log(respJson);
             //call function to loop through the results and push them to the DOM.
             buildResults(respJson.trails);
         })
         .catch(error => alert(`something went wrong: ${error.message}`));
 }
+
 function getLatLong(searchLocation){
     searchLocation = "?address=" + searchLocation.replace(" ", "+");
     let url = geoCodeUrl + searchLocation + "&key=" + googleApi;
@@ -63,19 +86,13 @@ function getLatLong(searchLocation){
         })
         .catch(err => alert(`something went wrong: ${err.message}`));
 }
-function getResults(searchLocation){
-    //get location into lat/long
-    getLatLong(searchLocation);
-    //this is going to mve
-              
-}
 
 function handleForm(){
     $(".search-form").submit(event =>{
         event.preventDefault();
-        console.log('button press');
         let searchLocation = $("#in-city").val();
-        getResults(searchLocation);
+        $(".results").empty();
+        getLatLong(searchLocation);
     });
 }
 
