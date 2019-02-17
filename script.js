@@ -31,10 +31,11 @@ function buildResults(trails){
         resultsLoc[i] = {name: `${trailName}`, latitude: `${trails[i].latitude}`, longitude: `${trails[i].longitude}`, zInd: (i+1)};
         condStatus = trails[i].conditionStatus;
         condDetails = trails[i].conditionDetails;
+        condDate = trails[i].conditionDate;
         if(condDetails == null){
             condDetails = '';
+            condDate = 'Never';
         }
-        condDate = trails[i].conditionDate;
         let resultsList = `
         <div class="js-single-result">
         <p class="js-name">${trailName}</p>
@@ -50,7 +51,8 @@ function buildResults(trails){
     let resultsNum = trails.length;
     initMap(resultsNum);
 }
-    
+ 
+
 function initMap(resultsNum) {
     if(searchLat != ''){
         let map;
@@ -64,6 +66,15 @@ function initMap(resultsNum) {
                 map: map,
                 title: resultsLoc[i].name,
                 zIndex: resultsLoc[i].zInd,
+            });
+            // Attaches an info window to a marker with the provided message. When the
+            // marker is clicked, the info window will open with the trail data
+            let infowindow = new google.maps.InfoWindow({
+                content: resultsLoc[i].name
+            });
+
+            marker.addListener('click', function() {
+                infowindow.open(map, marker);
             });
         }
         $('#map').removeClass('hidden');
