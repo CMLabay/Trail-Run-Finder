@@ -16,6 +16,7 @@ function buildResults(trails){
     let condStatus = '';
     let condDetails = '';
     let condDate = '';
+    let trailStars = '';
     //set returned data
     $(".results").append(`<h1>${trails.length} trails found:</h1>`);
     for(let i = 0; i < trails.length; i++){
@@ -28,6 +29,7 @@ function buildResults(trails){
         trailName = trails[i].name;
         trailSummary = trails[i].summary;
         trailAscent = trails[i].ascent;
+        trailStars = trails[i].stars;
         resultsLoc[i] = {name: `${trailName}`, latitude: `${trails[i].latitude}`, longitude: `${trails[i].longitude}`, zInd: (i+1)};
         condStatus = trails[i].conditionStatus;
         condDetails = trails[i].conditionDetails;
@@ -41,6 +43,7 @@ function buildResults(trails){
         <p class="js-name">${trailName}</p>
         <p>${trailSummary}</p>
         <p>Length: ${trailLength} miles, Ascent: ${trailAscent}</p>
+        <p>Stars: ${trailStars}</p>
         <p>Condition: ${condStatus}, Date Reported: ${condDate}</p>
         <p>${condDetails}</p>
        </div>
