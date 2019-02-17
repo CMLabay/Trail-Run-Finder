@@ -55,7 +55,7 @@ function buildResults(trails){
 
 function initMap(resultsNum) {
     if(searchLat != ''){
-        let map;
+        let map, lastInd;
         map = new google.maps.Map(document.getElementById('map'), {
         zoom: 9.5,
         center: {lat: searchLat, lng: searchLong},
@@ -69,12 +69,16 @@ function initMap(resultsNum) {
             });
             // Attaches an info window to a marker with the provided message. When the
             // marker is clicked, the info window will open with the trail data
+            //if an infowindow is open, it will close when another marker is clicked.
             let infowindow = new google.maps.InfoWindow({
                 content: resultsLoc[i].name
             });
-
             marker.addListener('click', function() {
+                if(lastInd){
+                    lastInd.close();
+                }
                 infowindow.open(map, marker);
+                lastInd = infowindow;
             });
         }
         $('#map').removeClass('hidden');
