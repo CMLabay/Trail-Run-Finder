@@ -14,6 +14,7 @@ let searchLong = '';
 let condStatus = '';
 let condDetails = '';
 let condDate = '';
+let testDest = '29.7604,-95.3698';
 
 function buildResults(trails){
     //set returned data
@@ -52,7 +53,6 @@ function buildResults(trails){
     initMap(resultsNum);
 }
  
-
 function initMap(resultsNum) {
     if(searchLat != ''){
         let map, lastInd;
@@ -71,7 +71,7 @@ function initMap(resultsNum) {
             // marker is clicked, the info window will open with the trail data
             //if an infowindow is open, it will close when another marker is clicked.
             let infowindow = new google.maps.InfoWindow({
-                content: resultsLoc[i].name
+                content: `${resultsLoc[i].name} <br/><a href="https://www.google.com/maps/dir/?api=1&destination=${marker.position}">Get Directions</a>`
             });
             marker.addListener('click', function() {
                 if(lastInd){
@@ -82,6 +82,7 @@ function initMap(resultsNum) {
             });
         }
         $('#map').removeClass('hidden');
+
     }
 }
 function getTrails(lat, long){
