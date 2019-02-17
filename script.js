@@ -36,7 +36,7 @@ function buildResults(trails){
         }
         condDate = trails[i].conditionDate;
         let resultsList = `
-        <img class="js-trail-image" src="${trailPic}">
+        <img class="js-trail-image" src="${trailPic}" alt="picture of trailhead">
         <div class="js-single-result">
         <p class="js-name">${trailName}</p>
         <p>${trailSummary}</p>
