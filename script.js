@@ -14,7 +14,6 @@ let searchLong = '';
 let condStatus = '';
 let condDetails = '';
 let condDate = '';
-let testDest = '29.7604,-95.3698';
 
 function buildResults(trails){
     //set returned data
