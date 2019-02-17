@@ -4,18 +4,18 @@ const trailUrl = "https://www.trailrunproject.com/data/get-trails";
 const trailKey = "200417972-9dc9a277ef8cb3c883310ed069aec132";
 const geoCodeUrl = "https://maps.googleapis.com/maps/api/geocode/json";
 const googleApi = "AIzaSyDg4-ORDFbZJ9J7LASnL5qecmn78pHB3mo";
-let resultsLoc = {};
-let trailLength = '';
-let trailName = '';
-let trailSummary = '';
-let trailAscent = '';
 let searchLat = '';
 let searchLong = '';
-let condStatus = '';
-let condDetails = '';
-let condDate = '';
+let resultsLoc = {};
 
 function buildResults(trails){
+    let trailLength = '';
+    let trailName = '';
+    let trailSummary = '';
+    let trailAscent = '';
+    let condStatus = '';
+    let condDetails = '';
+    let condDate = '';
     //set returned data
     $(".results").append(`<h1>${trails.length} trails found:</h1>`);
     for(let i = 0; i < trails.length; i++){
@@ -81,7 +81,6 @@ function initMap(resultsNum) {
             });
         }
         $('#map').removeClass('hidden');
-
     }
 }
 function getTrails(lat, long){
