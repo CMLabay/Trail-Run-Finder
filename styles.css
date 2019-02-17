@@ -1,6 +1,6 @@
 *{
     font-family:sans-serif;
-    margin:20px;  
+    margin-bottom:20px;  
 }
 h3, h2, h1{
     text-align:center;
@@ -20,9 +20,7 @@ fieldset{
     padding-right:80px;
 
 }
-.js-results-map{
-    max-width:60%;
-}
+
 .js-trail-image{
     text-align:right;
     float:right;
@@ -51,4 +49,29 @@ a{
 }
 .hidden{
     display:none;
+}
+@media screen and (max-width: 500px){
+    .js-single-result{
+        text-align:center;
+        float: none;
+        display: inline;
+    }   
+    .js-trail-image{
+        max-height:300px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        float: none;
+    } 
+    .results{
+        padding-left:5px;
+        padding-right:5px;
+    
+    }
+    .map{
+        max-width:90%;
+        max-height:450px;
+        margin-left:auto;
+        margin-right:auto;
+    }
 }

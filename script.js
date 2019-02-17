@@ -36,7 +36,6 @@ function buildResults(trails){
         }
         condDate = trails[i].conditionDate;
         let resultsList = `
-        <img class="js-trail-image" src="${trailPic}" alt="picture of trailhead">
         <div class="js-single-result">
         <p class="js-name">${trailName}</p>
         <p>${trailSummary}</p>
@@ -44,6 +43,7 @@ function buildResults(trails){
         <p>Condition: ${condStatus}, Date Reported: ${condDate}</p>
         <p>${condDetails}</p>
        </div>
+       <img class="js-trail-image" src="${trailPic}" alt="picture of trailhead">
        <div style="clear: both;"></div>`;
         $(".results").append(resultsList); 
     }
