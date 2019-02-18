@@ -12,4 +12,4 @@ Results:
 ![results list](Results.png)
 
 Map:
-![Map}(Map.png)
+![Map](Map.png)
