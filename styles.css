@@ -67,6 +67,9 @@ fieldset{
     font-weight:bold;
     color:#FFC855;
 }
+label{
+    display:block;
+}
 p{
     font-size:20px;
     font-family: 'M PLUS Rounded 1c', sans-serif;
