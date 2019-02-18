@@ -20,7 +20,7 @@ The user can enter a location and search radius to return a list of trails that 
   At the bottom, an interactive Google map is displayed with all of the results listed. The user can then click each result marker and get directions to the trailhead.
 
 ## Live Link
-https://shhmavel.github.io/Trail-Run-Finder
+- [Trail Run Finder]https://shhmavel.github.io/Trail-Run-Finder
 
 ## Screenshots:
 ### Search:
