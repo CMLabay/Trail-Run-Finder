@@ -1,5 +1,6 @@
 'use strict'
 
+//constants needed throughout the program
 const trailUrl = "https://www.trailrunproject.com/data/get-trails";
 const trailKey = "200417972-9dc9a277ef8cb3c883310ed069aec132";
 const geoCodeUrl = "https://maps.googleapis.com/maps/api/geocode/json";
@@ -34,6 +35,7 @@ function buildResults(trails){
         condStatus = trails[i].conditionStatus;
         condDetails = trails[i].conditionDetails;
         condDate = trails[i].conditionDate;
+        //If the trail status have never been set, set the condition details to space, and the date to Never
         if(condDetails == null){
             condDetails = '';
             condDate = 'Never';
@@ -53,6 +55,7 @@ function buildResults(trails){
        <div style="clear: both;"></div>`;
         $(".results").append(resultsList); 
     }
+    //compose all results into an interactive map
     let resultsNum = trails.length;
     initMap(resultsNum);
 }
@@ -64,6 +67,7 @@ function initMap(resultsNum) {
         zoom: 9.5,
         center: {lat: searchLat, lng: searchLong},
         });
+        //build each marker
         for(let i = 0; i<resultsNum;i++){
             let marker = new google.maps.Marker({
                 position: {lat: parseFloat(resultsLoc[i].latitude), lng: parseFloat(resultsLoc[i].longitude)},
@@ -85,10 +89,12 @@ function initMap(resultsNum) {
                 lastInd = infowindow;
             });
         }
+        //display the map
         $('#map').removeClass('hidden');
     }
 }
 function getTrails(lat, long){
+    //format the location and url for Trail Run API
     let latLong = `lat=${lat}&lon=${long}`;
     searchLat = lat;
     searchLong = long;
@@ -104,6 +110,7 @@ function getTrails(lat, long){
 }
 
 function getLatLong(searchLocation){
+    //format the search location into latitude and longitude by using the Geocode API
     searchLocation = "?address=" + searchLocation.replace(" ", "+");
     let url = geoCodeUrl + searchLocation + "&key=" + googleApi;
     fetch(url)
@@ -111,18 +118,19 @@ function getLatLong(searchLocation){
         .then(responseJson => {
             let lat = responseJson.results[0].geometry.location.lat;
             let long = responseJson.results[0].geometry.location.lng;
-            //now we need to fetch the trail data.
+            //now we need to get the trail data.
             getTrails(lat, long);
         })
         .catch(err => alert(`something went wrong: ${err.message}`));
 }
 
+//When the form is submitted, retrieve the entered location value, and clear any previous results
 function handleForm(){
     $(".search-form").submit(event =>{
         event.preventDefault();
         let searchLocation = $("#in-city").val();
-        $(".results").empty();
-        $('#map').empty();
+        $('.map').empty();
+        $('.results').empty();
         getLatLong(searchLocation);
     });
 }
