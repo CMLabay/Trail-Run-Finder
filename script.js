@@ -47,7 +47,9 @@ function buildResults(trails){
         <p>Condition: ${condStatus}, Date Reported: ${condDate}</p>
         <p>${condDetails}</p>
        </div>
-       <img class="js-trail-image" src="${trailPic}" alt="picture of trailhead">
+       <div class="js-img-container">
+        <img class="js-trail-image" src="${trailPic}" alt="picture of trailhead">
+       </div>
        <div style="clear: both;"></div>`;
         $(".results").append(resultsList); 
     }
