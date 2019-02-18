@@ -32,7 +32,7 @@ https://shhmavel.github.io/Trail-Run-Finder
 ### Map:
 ![Map](Screenshots/Map.png)
 
-## Tecnologies Used
+## Technologies Used
 * JavaScript
 * HTML
 * JQuery
