@@ -6,10 +6,10 @@ https://shhmavel.github.io/Trail-Run-Finder
 Screenshots:
 
 Search:
-![search screen](screenshots/Search.png)
+![search screen](Screenshots/Search.png)
 
 Results:
-![results list](Results.png)
+![results list](Screenshots/Results.png)
 
 Map:
-![Map](Map.png)
+![Map](Screenshots/Map.png)
