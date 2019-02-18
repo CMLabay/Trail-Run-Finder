@@ -1,15 +1,36 @@
 # Trail-Run-Finder
-Find nearby trails and conditions.
+The user can enter a location and search radius to return a list of trails that are close by. The location can be entered in many formats including: 
+  * City, State 
+  * City
+  * State
+  * Zipcode
+  * Point of Interest
+  
+ ## Summary
+  For ease and understandibility, the user is simply asked to enter a city and state, or a zipcode.
+  The results list displays data on each trail including:
+  * Length
+  * Conditions
+  * Stars (rating)
+  * Name
+  * Summary
+  * Picture (If available)
 
+## Live Link
 https://shhmavel.github.io/Trail-Run-Finder
 
-Screenshots:
-
-Search:
+## Screenshots:
+### Search:
 ![search screen](Screenshots/Search.png)
 
-Results:
+### Results:
 ![results list](Screenshots/Results.png)
 
-Map:
+### Map:
 ![Map](Screenshots/Map.png)
+
+## Tecnologies Used
+* JavaScript
+* HTML
+* JQuery
+* CSS 
