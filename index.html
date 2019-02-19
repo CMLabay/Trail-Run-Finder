@@ -1,33 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width-device-width, initial-scale=1.0">
-        <title>Trail Run Finder</title>
-        <link rel="stylesheet" href="styles.css">
-        <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
-    </head>
-    <body>
-        <h2>Welcome to the Trail Run Finder!</h2>
-        <h3>Enter a city and state, (in the form of city, state) or a zipcode to find nearby trails.</h3>
-        <form class="search-form"> 
-            <fieldset class="submit">
-                <label for="in-city">City, State or zipcode
-                    <input type="text" id="in-city" name="in-city" placeholder="Houston, TX" required>
-                </label>
-                <label for="in-radius">Search Radius
-                    <input type="number" id="in-radius" name="in-radius" value=25>
-                </label>
-                <button class="submit">Find Trails</button>
-            </fieldset>
-        </form>
-        <section class="results">
-        </section>
-        <section>
-            <div id="map" class="map hidden"></div>
-        </section>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script src="script.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg4-ORDFbZJ9J7LASnL5qecmn78pHB3mo&callback=initMap"async defer></script>
-    </body>
+<head>
+	<meta charset="UTF-8">
+	<meta content="width-device-width, initial-scale=1.0" name="viewport">
+	<title>Trail Run Finder</title>
+	<link href="styles.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+</head>
+<body>
+	<h2>Welcome to the Trail Run Finder!</h2>
+	<h3>Enter a city and state, (in the form of city, state) or a zipcode to find nearby trails.</h3>
+	<form class="search-form">
+		<fieldset class="submit">
+			<label for="in-city">City, State or zipcode <input id="in-city" name="in-city" placeholder="Houston, TX" required="" type="text"></label> <label for="in-radius">Search Radius <input id="in-radius" name="in-radius" type="number" value="25"></label> <button class="submit">Find Trails</button>
+		</fieldset>
+	</form>
+	<section class="results"></section>
+	<section>
+		<div class="map hidden" id="map"></div>
+	</section>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript">
+	</script> 
+	<script src="script.js">
+	</script> 
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg4-ORDFbZJ9J7LASnL5qecmn78pHB3mo&callback=initMap">
+	</script>
+</body>
 </html>
