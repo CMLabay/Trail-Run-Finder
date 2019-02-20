@@ -1,6 +1,11 @@
 * {
-	font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    box-sizing: border-box;
 	margin-bottom: 20px;
+}
+body {
+    background-color: #4995B2;
+    margin:0px;
 }
 fieldset {
 	padding-top: 20px;
@@ -21,16 +26,21 @@ button {
 	background-color: #FFF65C;
 	border-color: black;
 }
-body {
-	background-color: #4995B2;
-}
-h3, h2, h1 {
+
+h3, h1 {
 	text-align: center;
 	font-family: 'M PLUS Rounded 1c', sans-serif;
 	color: white;
 }
 h2 {
-	color: #FFF65C;
+    color: #FFF65C;
+    margin:0px;
+}
+nav {
+    background-color: #204766;
+    text-align: left;
+    position:relative;
+    padding:10px;
 }
 fieldset {
 	border: none;
@@ -116,6 +126,6 @@ a {
 }
 @media screen and (min-width: 1000px) {
 	.js-img-container {
-		padding-top: 30px;
+		padding-top: 40px;
 	}
 }
