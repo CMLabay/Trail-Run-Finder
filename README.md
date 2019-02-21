@@ -1,5 +1,8 @@
 # Trail-Run-Finder
 
+## Live Link
+- [Trail Run Finder](https://shhmavel.github.io/Trail-Run-Finder)
+
 ## Summary
 The user can enter a location and search radius to return a list of trails that are close by. The location can be entered in many formats including: 
   * City, State 
@@ -19,8 +22,6 @@ The user can enter a location and search radius to return a list of trails that 
   
   At the bottom, an interactive Google map is displayed with all of the results listed. The user can then click each result marker and get directions to the trailhead.
 
-## Live Link
-- [Trail Run Finder](https://shhmavel.github.io/Trail-Run-Finder)
 
 ## Screenshots:
 ### Search:
