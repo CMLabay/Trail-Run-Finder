@@ -1,6 +1,6 @@
 # Trail-Run-Finder
 
-## Live Link
+## Live Link (Not Currently hosted)
 - [Trail Run Finder](https://shhmavel.github.io/Trail-Run-Finder)
 
 ## Summary
